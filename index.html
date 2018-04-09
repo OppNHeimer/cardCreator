@@ -9,33 +9,25 @@
   <script src='script.js'></script>
 </head>
 <body>
-  <h1>hello world</h1>
-  <section class='inputs'></section>
-    <form class='inputs__form'>
-      <label class='inputs__form__label'>Full Name</label>
-      <input class='inputs__form__input' type='text' name='name' id='name' />      
-      <label class='inputs__form__label'>Email</label>
-      <input class='inputs__form__input' type='text' name='email' id='email' />
-      <label class='inputs__form__label'>Company Name</label>
-      <input class='inputs__form__input' type='text' name='companyName' id='companyName' />
-      <label class='inputs__form__label'>Address Line 1</label>
-      <input class='inputs__form__input' type='text' name='address1' id='address1' />
-      <label class='inputs__form__label'>Address Line 2</label>
-      <input class='inputs__form__input' type='text' name='address2' id='address2' />
-      <label class='inputs__form__label'>Website</label>
-      <input class='inputs__form__input' type='text' name='web' id='web' />
-      <label class='inputs__form__label'>Phone</label>
-      <input class='inputs__form__input' type='text' name='phone' id='phone' />
-    </form>
-  <section class='upload'>
-    <form class='upload__form'>
-      <input type="file" onchange="addImages()" />
-    </form>
-  </section>
-  <section class='gallery'>
+  <section class='edit'>
+    <div class='edit__header'>
+        <h1>Edit Card</h1>
+        <img class='edit__header__img' src='./icons/chevron-down.png' onclick='toggleShow()'/>
+    </div>
     
+    <form class='edit__form'>
+      <!-- inputs and labes inserted by script -->
+    </form>
+    <form class='edit__upload-image'>
+        <input type="file" onchange='addImages()' />
+    </form>
+    <div class='gallery'>
+      <!-- images inserted by script -->
+    </div>
   </section>
+ 
   <section class='preview'>
+    <!-- text inserted by script -->
     <img class='preview__img' src="" height="200" alt="Image preview..." />
   </section>
 </body>
