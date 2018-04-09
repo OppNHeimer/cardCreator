@@ -29,11 +29,14 @@
     </form>
   <section class='upload'>
     <form class='upload__form'>
-      <input type='file' />
-      <input type='submit' value='add image' />
+      <input type="file" onchange="addImages()" />
     </form>
   </section>
-  <section class='gallery'></section>
-  <section class='preview'></section>
+  <section class='gallery'>
+    
+  </section>
+  <section class='preview'>
+    <img class='preview__img' src="" height="200" alt="Image preview..." />
+  </section>
 </body>
 </html>

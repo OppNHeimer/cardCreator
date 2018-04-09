@@ -1,3 +1,12 @@
 body {
   background-color: aqua;
 }
+
+.inputs {
+  width: 30vw;
+}
+
+.inputs__form {
+  display: flex;
+  flex-direction: column;
+}
