@@ -41,23 +41,22 @@ function toggleShow () {
 }
 
 //// text inputs ////
-let fullName    = { name: 'Full Name',      value: '' }
-let email       = { name: 'Email',          value: '' }
-let companyName = { name: 'Company Name',   value: '' }
-let address1    = { name: 'Address Line 1', value: '' }
-let address2    = { name: 'Address Line 2', value: '' }
-let website     = { name: 'Website',        value: '' }
-let phone       = { name: 'Phone',          value: '' }
-let inputs = [fullName, email, companyName, address1, address2, website, phone]
+let firstName   = { name: 'First Name',     value: '', previewLocation: '.preview__large-inline' }
+let lastName    = { name: 'Last Name',      value: '', previewLocation: '.preview__large-inline' }
+let email       = { name: 'Email',          value: '', previewLocation: '.preview__small-block' }
+let companyName = { name: 'Company Name',   value: '', previewLocation: '.preview__medium-inline' }
+let address1    = { name: 'Address Line 1', value: '', previewLocation: '.preview__small-block' }
+let address2    = { name: 'Address Line 2', value: '', previewLocation: '.preview__small-block' }
+let website     = { name: 'Website',        value: '', previewLocation: '.preview__small-block' }
+let phone       = { name: 'Phone',          value: '', previewLocation: '.preview__small-block' }
+let inputs = [firstName, lastName, email, companyName, address1, address2, website, phone]
 
 window.onload = () => {
 
   let inputsForm = document.querySelector('.edit__form')
-  let preview = document.querySelector('.preview')
+  // let preview = document.querySelector('.preview')
 
   inputs.forEach( input => {
-    let newPreviewHeading = createPreviewHeading(input)
-    preview.appendChild(newPreviewHeading)
     let newInput = createInput(input)
     inputsForm.appendChild(newInput)
 
@@ -67,23 +66,31 @@ window.onload = () => {
     let newPreviewHeading = document.createElement('h4')
     newPreviewHeading.id = input.name.replace(/ /g,'')
     newPreviewHeading.classList.add('preview__heading')
+
     return newPreviewHeading
   }
 
   function createInput (input) {
-    let newInput = document.createElement('input')
-    newInput.type = 'text'
-    newInput.placeholder = input.name
-    newInput.name = input.name
-    newInput.classList.add('edit__form__input')
-    newInput.oninput = () => {
-      inputOninput(newInput)
+    let inputNode = document.createElement('input')
+    inputNode.type = 'text'
+    inputNode.placeholder = input.name
+    inputNode.name = input.name
+    inputNode.classList.add('edit__form__input')
+    inputNode.oninput = () => {
+      inputOninput(inputNode, input)
     }
-    return newInput
+    return inputNode
   }
 
-  function inputOninput (input) {
-    element = document.querySelector('#' + input.name.replace(/ /g,''))
-    element.innerHTML = input.value
+  function inputOninput (inputNode, input) {
+    let existingNode = document.querySelector('#' + input.name.replace(/ /g,''))
+    if (existingNode) {
+      existingNode.innerHTML = inputNode.value
+    } else {
+    let previewLocation = document.querySelector(input.previewLocation)
+    let newPreviewHeading = createPreviewHeading(input)
+    previewLocation.appendChild(newPreviewHeading)
+    newPreviewHeading.innerHTML = inputNode.value
+    }
   }
 }

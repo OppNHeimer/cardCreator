@@ -10,15 +10,14 @@
 </head>
 <body>
   <section class='edit'>
-    <div class='edit__header'>
-        <h1>Edit Card</h1>
-        <img class='edit__header__img' src='./icons/chevron-down.png' onclick='toggleShow()'/>
-    </div>
+      <img class='edit__header__img' src='./icons/chevron-down.png' onclick='toggleShow()'/>
+      <h1>Edit Card</h1>
     
     <form class='edit__form'>
       <!-- inputs and labes inserted by script -->
     </form>
     <form class='edit__upload-image'>
+        <h4>Upload Logo</h4>
         <input type="file" onchange='addImages()' />
     </form>
     <div class='gallery'>
@@ -27,8 +26,11 @@
   </section>
  
   <section class='preview'>
+    <img class='preview__img' src="" alt="Image preview..." />
     <!-- text inserted by script -->
-    <img class='preview__img' src="" height="200" alt="Image preview..." />
+    <div class='preview__large-inline'></div>
+    <div class='preview__medium-inline'></div>
+    <div class='preview__small-block'></div>
   </section>
 </body>
 </html>
