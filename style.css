@@ -105,6 +105,12 @@ body {
           margin-top: 0;
         }
 
+        .edit__body__upload-image__gallery {
+          margin: 3vh 0;
+          height: 40vh;
+          overflow-y: scroll;
+        }
+
 .preview {
   box-sizing: border-box;
   border: 2vw solid rgba(255,255,255,0.9);

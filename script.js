@@ -1,5 +1,6 @@
+//// upload images ////
 function addImages() {
-  let gallery = document.querySelector('.gallery')
+  let gallery = document.querySelector('.edit__body__upload-image__gallery')
   let files    = document.querySelector('input[type=file]').files
 
   function readAndAdd(file) {
@@ -10,6 +11,9 @@ function addImages() {
       image.title = file.name
       image.height  = 100;
       image.src = this.result
+      image.draggable = true
+      image.ondragenter = (e) => {dragenter(e)}
+      image.ondragstart = (e) => {dragstart(e)}
       image.onclick = (e) => {togglePreview(e.target.src)}
       gallery.appendChild(image)
       togglePreview(this.result)
@@ -23,11 +27,13 @@ function addImages() {
   }
 }
 
+//// toggle preview image ////
 function togglePreview (src) {
   let previewImage = document.querySelector('.preview__img')
   previewImage.src = src
 }
 
+//// show/hide edit page ////
 function toggleShow () {
   let edit = document.querySelector('.edit')
   let image = document.querySelector('.edit__header__img')
@@ -40,6 +46,32 @@ function toggleShow () {
   }
 }
 
+//// draggable gallery ////
+var source 
+function isBefore(a, b) {
+  if (a.parentNode === b.parentNode) {
+    for (var current = a; current; current = current.previousSibling) {
+      if (current === b) {
+        return true
+      }
+    }
+  }
+  return false
+}
+
+function dragenter(e) {
+  if (isBefore(source, e.target)) {
+    e.target.parentNode.insertBefore(source, e.target)
+  } else {
+    e.target.parentNode.insertBefore(source, e.target.nextSibling)
+  }
+}
+
+function dragstart(e) {
+  console.log('dragsstart')
+  source = e.target
+  e.dataTransfer.effectAllowed = 'move'
+}
 
 //// text inputs ////
 let firstName   = { name: 'First Name',     value: '', previewLocation: '.preview__text__large-inline' }
@@ -55,20 +87,12 @@ let inputs = [firstName, lastName, email, website, phone, companyName, address1,
 
 window.onload = () => {
 
+  //// insert input fields ////
   let inputsForm = document.querySelector('.edit__body__left__form')
-
   inputs.forEach( input => {
     let newInput = createInput(input)
     inputsForm.appendChild(newInput)
   })
-  
-  function createPreviewHeading (input) {
-    let newPreviewHeading = document.createElement('p')
-    newPreviewHeading.id = input.name.replace(/ /g,'')
-    newPreviewHeading.classList.add('preview__heading')
-
-    return newPreviewHeading
-  }
 
   function createInput (input) {
     let inputNode = document.createElement('input')
@@ -82,9 +106,13 @@ window.onload = () => {
     return inputNode
   }
 
+  //// update preview ////
   function inputOninput (inputNode, input) {
+    console.log(inputNode.value)
     let existingNode = document.querySelector('#' + input.name.replace(/ /g,''))
-    if (existingNode) {
+    if (!inputNode.value && existingNode) {
+      existingNode.parentElement.removeChild(existingNode)
+    } else if (existingNode) {
       existingNode.innerHTML = inputNode.value
     } else {
     let previewLocation = document.querySelector(input.previewLocation)
@@ -94,12 +122,18 @@ window.onload = () => {
     }
   }
 
+  function createPreviewHeading (input) {
+    let newPreviewHeading = document.createElement('p')
+    newPreviewHeading.id = input.name.replace(/ /g,'')
+    newPreviewHeading.classList.add('preview__heading')
+    return newPreviewHeading
+  }
+
+  //// color picker ////
   let colorPicker = document.querySelector('.edit__body__left__color-picker__input')
   colorPicker.addEventListener('input', changeColor)
   function changeColor (e) {
     let body = document.querySelector('body')
     body.style.setProperty('--secondary-color', e.target.value)
   }
-
-
 }
