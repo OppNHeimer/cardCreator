@@ -108,6 +108,8 @@ window.onload = () => {
 
   //// update preview ////
   function inputOninput (inputNode, input) {
+    // bug: if nodes are deleted or added in incorrect order, 
+    // preview headings are also incorrectly ordered
     let existingNode = document.querySelector('#' + input.name.replace(/ /g,''))
     if (!inputNode.value && existingNode) {
       existingNode.parentElement.removeChild(existingNode)
