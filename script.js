@@ -108,7 +108,6 @@ window.onload = () => {
 
   //// update preview ////
   function inputOninput (inputNode, input) {
-    console.log(inputNode.value)
     let existingNode = document.querySelector('#' + input.name.replace(/ /g,''))
     if (!inputNode.value && existingNode) {
       existingNode.parentElement.removeChild(existingNode)
