@@ -40,30 +40,30 @@ function toggleShow () {
   }
 }
 
+
 //// text inputs ////
-let firstName   = { name: 'First Name',     value: '', previewLocation: '.preview__large-inline' }
-let lastName    = { name: 'Last Name',      value: '', previewLocation: '.preview__large-inline' }
-let email       = { name: 'Email',          value: '', previewLocation: '.preview__small-block' }
-let companyName = { name: 'Company Name',   value: '', previewLocation: '.preview__medium-inline' }
-let address1    = { name: 'Address Line 1', value: '', previewLocation: '.preview__small-block' }
-let address2    = { name: 'Address Line 2', value: '', previewLocation: '.preview__small-block' }
-let website     = { name: 'Website',        value: '', previewLocation: '.preview__small-block' }
-let phone       = { name: 'Phone',          value: '', previewLocation: '.preview__small-block' }
-let inputs = [firstName, lastName, email, companyName, address1, address2, website, phone]
+let firstName   = { name: 'First Name',     value: '', previewLocation: '.preview__text__large-inline' }
+let lastName    = { name: 'Last Name',      value: '', previewLocation: '.preview__text__large-inline' }
+let email       = { name: 'Email',          value: '', previewLocation: '.preview__text__small-inline' }
+let website     = { name: 'Website',        value: '', previewLocation: '.preview__text__small-inline' }
+let phone       = { name: 'Phone',          value: '', previewLocation: '.preview__text__small-inline' }
+let companyName = { name: 'Company Name',   value: '', previewLocation: '.preview__text__medium-block' }
+let address1    = { name: 'Address Line 1', value: '', previewLocation: '.preview__text__medium-block' }
+let address2    = { name: 'Address Line 2', value: '', previewLocation: '.preview__text__medium-block' }
+
+let inputs = [firstName, lastName, email, website, phone, companyName, address1, address2]
 
 window.onload = () => {
 
-  let inputsForm = document.querySelector('.edit__form')
-  // let preview = document.querySelector('.preview')
+  let inputsForm = document.querySelector('.edit__body__left__form')
 
   inputs.forEach( input => {
     let newInput = createInput(input)
     inputsForm.appendChild(newInput)
-
   })
   
   function createPreviewHeading (input) {
-    let newPreviewHeading = document.createElement('h4')
+    let newPreviewHeading = document.createElement('p')
     newPreviewHeading.id = input.name.replace(/ /g,'')
     newPreviewHeading.classList.add('preview__heading')
 
@@ -75,7 +75,7 @@ window.onload = () => {
     inputNode.type = 'text'
     inputNode.placeholder = input.name
     inputNode.name = input.name
-    inputNode.classList.add('edit__form__input')
+    inputNode.classList.add('edit__body__left__form__input')
     inputNode.oninput = () => {
       inputOninput(inputNode, input)
     }
@@ -93,4 +93,13 @@ window.onload = () => {
     newPreviewHeading.innerHTML = inputNode.value
     }
   }
+
+  let colorPicker = document.querySelector('.edit__body__left__color-picker__input')
+  colorPicker.addEventListener('input', changeColor)
+  function changeColor (e) {
+    let body = document.querySelector('body')
+    body.style.setProperty('--secondary-color', e.target.value)
+  }
+
+
 }

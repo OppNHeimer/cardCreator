@@ -1,10 +1,11 @@
 body {
-  background-color: white;
   background-image: url('./icons/natural-paper.png');
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-
+  --primary-color: rgba(20,20,20,0.9);
+  --secondary-color: rgba(255,255,255,0.9);
+  color: var(--primary-color);
 }
 
 .edit {
@@ -15,10 +16,9 @@ body {
   padding: 0 2vw 2vh 2vw;
   width: 60vw;
   height: 70vh;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,0.95);
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
   transition: 0.3s ease;
-  /* overflow-y: scroll; */
 }
 
 .edit-hidden {
@@ -57,30 +57,62 @@ body {
       transform: rotate(0deg);
     }
 
-  .edit__form {
-    display: flex;
-    flex-direction: column;
-  }
-
-    .edit__form__input {
-      margin: 3px;
-      border: none;
-      width: 25vw;
-      border-bottom: 1px solid black;
-      background-color: inherit;
+    .edit__body {
+      display: flex;
+      flex-direction: row;
     }
+      
+      .edit__body__left {
+        display: flex;
+        flex-direction: column;
+      }
+        .edit__body__left__form {
+          display: flex;
+          flex-direction: column;
+          width: 25vw;
+        }
 
-    .edit__form__input:focus {
-      background-color: rgba(255,255,255,0.5);
-    }
+          .edit__body__left__form__input {
+            margin: 3px;
+            border: none;
+            height: 4vh;
+            border-bottom: 1px solid black;
+            background-color: inherit;
+          }
+
+          .edit__body__left__form__input:focus {
+            background-color: rgba(255,255,255,0.5);
+          }
+        
+        .edit__body__left__color-picker {
+          display: flex;
+          flex-direction: row;
+          margin: 3vh 0;
+          font-weight: bold;
+        }
+
+          .edit__body__left__color-picker__input {
+            margin-left: 10px;
+            padding: 0;
+            border: none;
+          }
+      .edit__body__upload-image {
+        margin-left: 6vw;
+        width: 25vw;
+      }
+
+        .edit__body__upload-image__h4 {
+          margin-top: 0;
+        }
 
 .preview {
   box-sizing: border-box;
-  border: 2vw solid rgba(255,255,255,0.5);
+  border: 2vw solid rgba(255,255,255,0.9);
   margin: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(50,50,50,0.1);
+  background-image: url('./icons/natural-paper.png');
+  background-color: rgba(50,50,50,0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,23 +124,59 @@ body {
     top: 0;
     right: 0;
     margin: 4vw;
-    height: 15vh;
+    height: 20vh;
   }
 
-  .preview__large-inline {
+  .preview__text {
+    width: fit-content;
+  }
+
+  .preview__text__large-inline {
     display: flex;
     flex-direction: row;
     font-size: 5rem;
     margin: 2vh;
+    border-bottom: 2px solid rgba(255,255,255,0.9);
   }
 
-  .preview__medium-inline {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-  }
+    .preview__text__large-inline * {
+      margin: 0;
+    } 
 
-  .preview__small-block {
+    .preview__text__large-inline p:first-child {
+      color: var(--secondary-color);
+      font-weight: bold;
+    }
+
+  .preview__text__medium-block {
     display: flex;
     flex-direction: column;
+    margin: 0 5vh;
+    align-self: left;
   }
+
+    .preview__text__medium-block * {
+      margin: 1vh;
+    }
+
+    .preview__text__medium-block p:first-child {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+  .preview__text__small-inline {
+    position: absolute;
+    bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: 80vw;
+    color: rgba(255,255,255,0.9);
+    font-weight: bold;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+  }
+
+    .preview__text__smalll-inline {
+      margin: 0 1vw;
+    }
