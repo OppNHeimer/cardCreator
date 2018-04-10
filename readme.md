@@ -2,6 +2,8 @@
 
 CardCreater is a minimal tool to preview a digital business card with custom content.
 
+![demo gif]('./images/samplegif.gif)
+
 ## Getting Started
 
 1. Clone and open in browser.

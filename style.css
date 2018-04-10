@@ -19,6 +19,7 @@ body {
   background-color: rgba(255,255,255,0.95);
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
   transition: 0.3s ease;
+  z-index: 1;
 }
 
 .edit-hidden {
@@ -117,7 +118,7 @@ body {
   margin: 0;
   height: 100vh;
   width: 100vw;
-  background-image: url('./icons/natural-paper.png');
+  background-image: url('./imagess/natural-paper.png');
   background-color: rgba(50,50,50,0.3);
   display: flex;
   flex-direction: column;
